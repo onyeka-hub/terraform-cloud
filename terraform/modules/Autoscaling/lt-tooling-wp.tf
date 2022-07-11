@@ -31,8 +31,8 @@ resource "aws_launch_template" "wordpress-launch-template" {
 
   }
 
-  user_data = filebase64("${path.module}/wordpress.sh")
-}
+#   user_data = filebase64("${path.module}/wordpress.sh")
+ }
 
 # launch template for toooling
 
@@ -67,5 +67,5 @@ resource "aws_launch_template" "tooling-launch-template" {
 
   }
 
-  user_data = filebase64("${path.module}/tooling.sh")
+  # user_data = filebase64("${path.module}/tooling.sh")
 }

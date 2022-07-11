@@ -17,13 +17,13 @@ tags = {
 
 name = "onyi"
 
-ami = "ami-0ba4b09be1ba8a163"
+ami = "ami-0674ff532e7890a83"
 
-ami-bastion = "ami-011da3ac5f39a4b76"
+ami-bastion = "ami-01372dbc339ac6762"
 
-ami-nginx = "ami-0683b0d6ff0442368"
+ami-nginx = "ami-0df99291818eb09ec"
 
-ami-web = "ami-04346a849886e7cbd"
+ami-web = "ami-0d5fbc59812bb8b08"
 
 keypair = "devops"
 
