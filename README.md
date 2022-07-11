@@ -16,8 +16,6 @@ Always refer to the given diagram
 
 ![project image](./tooling_project_15.png)
 
-Will edit later
-
 
 
 ## install graphviz 
