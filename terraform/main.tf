@@ -116,12 +116,12 @@ module "alb" {
 }
 
 # The Module creates instances for jenkins, sonarqube abd jfrog
-module "compute" {
-  source          = "./modules/compute"
-  ami-jenkins     = var.ami
-  ami-sonar       = var.ami
-  ami-jfrog       = var.ami
-  subnets-compute = module.vpc.public_subnets-1
-  sg-compute      = [module.security.public-sg]
-  keypair         = var.keypair
-}
+# module "compute" {
+#   source          = "./modules/compute"
+#   ami-jenkins     = var.ami
+#   ami-sonar       = var.ami
+#   ami-jfrog       = var.ami
+#   subnets-compute = module.vpc.public_subnets-1
+#   sg-compute      = [module.security.public-sg]
+#   keypair         = var.keypair
+# }
