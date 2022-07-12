@@ -43,17 +43,17 @@ resource "aws_lb_target_group" "nginx-tgt" {
 
 #--- create a listener for the load balancer
 
-resource "aws_lb_listener" "nginx-listner" {
-  load_balancer_arn = aws_lb.ext-alb.arn
-  port              = 443
-  protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate_validation.onyeka.certificate_arn
+# resource "aws_lb_listener" "nginx-listner" {
+#   load_balancer_arn = aws_lb.ext-alb.arn
+#   port              = 443
+#   protocol          = "HTTPS"
+#   certificate_arn   = aws_acm_certificate_validation.onyeka.certificate_arn
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.nginx-tgt.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.nginx-tgt.arn
+#   }
+# }
 
 # ----------------------------
 #Internal Load Balancers for webservers
@@ -123,33 +123,33 @@ resource "aws_lb_target_group" "tooling-tgt" {
 # A rule was created to route traffic to tooling when the host header changes
 
 
-resource "aws_lb_listener" "web-listener" {
-  load_balancer_arn = aws_lb.ialb.arn
-  port              = 443
-  protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate_validation.onyeka.certificate_arn
+# resource "aws_lb_listener" "web-listener" {
+#   load_balancer_arn = aws_lb.ialb.arn
+#   port              = 443
+#   protocol          = "HTTPS"
+#   certificate_arn   = aws_acm_certificate_validation.onyeka.certificate_arn
 
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.wordpress-tgt.arn
-  }
-}
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.wordpress-tgt.arn
+#   }
+# }
 
-# listener rule for tooling target
+# # listener rule for tooling target
 
-resource "aws_lb_listener_rule" "tooling-listener" {
-  listener_arn = aws_lb_listener.web-listener.arn
-  priority     = 99
+# resource "aws_lb_listener_rule" "tooling-listener" {
+#   listener_arn = aws_lb_listener.web-listener.arn
+#   priority     = 99
 
-  action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.tooling-tgt.arn
-  }
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.tooling-tgt.arn
+#   }
 
-  condition {
-    host_header {
-      values = ["tooling.onyeka.ga"]
-    }
-  }
-}
+#   condition {
+#     host_header {
+#       values = ["tooling.onyeka.ga"]
+#     }
+#   }
+# }
