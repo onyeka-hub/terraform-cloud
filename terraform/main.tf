@@ -49,71 +49,71 @@ module "vpc" {
   public_subnets                      = [for i in range(2, 8, 2) : cidrsubnet(var.vpc_cidr, 8, i)]
 }
 
-module "security" {
-  source = "./modules/security"
-  vpc_id = module.vpc.vpc_id
-  name   = var.name
-}
+# module "security" {
+#   source = "./modules/security"
+#   vpc_id = module.vpc.vpc_id
+#   name   = var.name
+# }
 
 
-# RDS module; this module will create the RDS instance in the private subnet
-module "rds" {
-  source                 = "./modules/rds"
-  subnet_ids             = [module.vpc.private_subnets-2, module.vpc.private_subnets-3]
-  master-username        = var.master-username
-  master-password        = var.master-password
-  vpc_security_group_ids = module.security.vpc_security_group_ids
-  multi_az               = var.multi_az
-  name                   = var.name
-}
+# # RDS module; this module will create the RDS instance in the private subnet
+# module "rds" {
+#   source                 = "./modules/rds"
+#   subnet_ids             = [module.vpc.private_subnets-2, module.vpc.private_subnets-3]
+#   master-username        = var.master-username
+#   master-password        = var.master-password
+#   vpc_security_group_ids = module.security.vpc_security_group_ids
+#   multi_az               = var.multi_az
+#   name                   = var.name
+# }
 
 
-# Module for Elastic Filesystem; this module will creat elastic file system in the webservers availablity
-# zone and allow traffic fro the webservers
+# # Module for Elastic Filesystem; this module will creat elastic file system in the webservers availablity
+# # zone and allow traffic fro the webservers
 
-module "efs" {
-  source       = "./modules/efs"
-  account_no   = var.account_no
-  efs-subnet-1 = module.vpc.private_subnets-1
-  efs-subnet-2 = module.vpc.private_subnets-2
-  efs-sg       = [module.security.vpc_security_group_ids]
-}
+# module "efs" {
+#   source       = "./modules/efs"
+#   account_no   = var.account_no
+#   efs-subnet-1 = module.vpc.private_subnets-1
+#   efs-subnet-2 = module.vpc.private_subnets-2
+#   efs-sg       = [module.security.vpc_security_group_ids]
+# }
 
-module "AutoScaling" {
-  source            = "./modules/Autoscaling"
-  ami-web           = var.ami-web
-  ami-bastion       = var.ami-bastion
-  ami-nginx         = var.ami-nginx
-  desired_capacity  = var.desired_capacity
-  min_size          = var.min_size
-  max_size          = var.max_size
-  web-sg            = [module.security.web-sg]
-  bastion-sg        = [module.security.bastion-sg]
-  nginx-sg          = [module.security.nginx-sg]
-  wordpress-alb-tgt = module.alb.wordpress-tgt
-  nginx-alb-tgt     = module.alb.nginx-tgt
-  tooling-alb-tgt   = module.alb.tooling-tgt
-  instance_profile  = module.vpc.instance_profile
-  public_subnets    = [module.vpc.public_subnets-1, module.vpc.public_subnets-2]
-  private_subnets   = [module.vpc.private_subnets-1, module.vpc.private_subnets-2]
-  keypair           = var.keypair
-  # ami               = var.ami
-}
+# module "AutoScaling" {
+#   source            = "./modules/Autoscaling"
+#   ami-web           = var.ami-web
+#   ami-bastion       = var.ami-bastion
+#   ami-nginx         = var.ami-nginx
+#   desired_capacity  = var.desired_capacity
+#   min_size          = var.min_size
+#   max_size          = var.max_size
+#   web-sg            = [module.security.web-sg]
+#   bastion-sg        = [module.security.bastion-sg]
+#   nginx-sg          = [module.security.nginx-sg]
+#   wordpress-alb-tgt = module.alb.wordpress-tgt
+#   nginx-alb-tgt     = module.alb.nginx-tgt
+#   tooling-alb-tgt   = module.alb.tooling-tgt
+#   instance_profile  = module.vpc.instance_profile
+#   public_subnets    = [module.vpc.public_subnets-1, module.vpc.public_subnets-2]
+#   private_subnets   = [module.vpc.private_subnets-1, module.vpc.private_subnets-2]
+#   keypair           = var.keypair
+#   # ami               = var.ami
+# }
 
-# Module for Application Load balancer, this will create Extenal Load balancer and internal load balance
-module "alb" {
-  source             = "./modules/alb"
-  name               = "onyi-ext-alb"
-  vpc_id             = module.vpc.vpc_id
-  public-sg          = module.security.public-sg
-  private-sg         = module.security.private-sg
-  public-sbn-1       = module.vpc.public_subnets-1
-  public-sbn-2       = module.vpc.public_subnets-2
-  private-sbn-1      = module.vpc.private_subnets-1
-  private-sbn-2      = module.vpc.private_subnets-2
-  load_balancer_type = "application"
-  ip_address_type    = "ipv4"
-}
+# # Module for Application Load balancer, this will create Extenal Load balancer and internal load balance
+# module "alb" {
+#   source             = "./modules/alb"
+#   name               = "onyi-ext-alb"
+#   vpc_id             = module.vpc.vpc_id
+#   public-sg          = module.security.public-sg
+#   private-sg         = module.security.private-sg
+#   public-sbn-1       = module.vpc.public_subnets-1
+#   public-sbn-2       = module.vpc.public_subnets-2
+#   private-sbn-1      = module.vpc.private_subnets-1
+#   private-sbn-2      = module.vpc.private_subnets-2
+#   load_balancer_type = "application"
+#   ip_address_type    = "ipv4"
+# }
 
 # The Module creates instances for jenkins, sonarqube abd jfrog
 # module "compute" {
