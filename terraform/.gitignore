@@ -17,3 +17,7 @@ terraform.tfvars
 
 # lock info
 *.terraform.lock.hcl
+
+*.txt
+
+*-backup

@@ -21,10 +21,7 @@ resource "aws_autoscaling_notification" "onyeka_notifications" {
   topic_arn = aws_sns_topic.onyeka-sns.arn
 }
 
-
-
 # ---- Autoscaling for bastion  hosts
-
 
 resource "aws_autoscaling_group" "bastion-asg" {
   name                      = "bastion-asg"
@@ -42,7 +39,7 @@ resource "aws_autoscaling_group" "bastion-asg" {
   }
   tag {
     key                 = "Name"
-    value               = "onyi-bastion"
+    value               = "onyi-bastion-server"
     propagate_at_launch = true
   }
 }
@@ -68,7 +65,7 @@ vpc_zone_identifier = var.public_subnets
 
   tag {
     key                 = "Name"
-    value               = "onyi-nginx"
+    value               = "onyi-nginx-server"
     propagate_at_launch = true
   }
 }
@@ -77,5 +74,5 @@ vpc_zone_identifier = var.public_subnets
 
 resource "aws_autoscaling_attachment" "asg_attachment_nginx" {
   autoscaling_group_name = aws_autoscaling_group.nginx-asg.id
-  alb_target_group_arn   = var.nginx-alb-tgt
+  lb_target_group_arn    = var.nginx-alb-tgt
 }

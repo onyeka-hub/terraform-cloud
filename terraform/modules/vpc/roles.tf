@@ -17,7 +17,7 @@ resource "aws_iam_role" "ec2_instance_role" {
   tags = merge(
     var.tags,
     {
-      Name = "aws assume role"
+      Name = format("%s-%s", var.name, "assume-role")
     },
   )
 }
@@ -43,7 +43,7 @@ resource "aws_iam_policy" "policy" {
   tags = merge(
     var.tags,
     {
-      Name =  "aws assume policy"
+      Name = format("%s-%s", var.name, "assume-policy")
     },
   )
 }

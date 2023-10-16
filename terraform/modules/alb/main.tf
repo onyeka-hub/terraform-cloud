@@ -16,7 +16,7 @@ resource "aws_lb" "ext-alb" {
    tags = merge(
     var.tags,
     {
-      Name = "var.name-ext-alb"
+      Name = format("%s-%s", var.name, "ext-alb")
     },
   )
 
@@ -60,7 +60,7 @@ resource "aws_lb_listener" "nginx-listner" {
 #---------------------------------
 
 resource "aws_lb" "ialb" {
-  name     = "onyi-ialb"
+  name     = "onyi-int-alb"
   internal = true
   security_groups = [
     var.private-sg,
@@ -73,7 +73,7 @@ resource "aws_lb" "ialb" {
  tags = merge(
     var.tags,
     {
-      Name = "onyi-int-alb"
+      Name = format("%s-%s", var.name, "int-alb")
     },
   )
 
@@ -149,7 +149,7 @@ resource "aws_lb_listener_rule" "tooling-listener" {
 
   condition {
     host_header {
-      values = ["tooling.onyeka.ga"]
+      values = ["tooling.onyekaonu.site"]
     }
   }
 }

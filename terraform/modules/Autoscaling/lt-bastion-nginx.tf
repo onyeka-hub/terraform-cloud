@@ -25,12 +25,12 @@ resource "aws_launch_template" "bastion-launch-template" {
    tags = merge(
     var.tags,
     {
-      Name = "bastion-launch-template"
+      Name = format("%s-%s", var.name, "baston-lt")
     },
   )
   }
 
-  # user_data = filebase64("${path.module}/bastion.sh")
+  user_data = filebase64("${path.module}/bastion.sh")
 }
 
 # launch template for nginx
@@ -60,10 +60,10 @@ resource "aws_launch_template" "nginx-launch-template" {
     tags = merge(
     var.tags,
     {
-      Name = "nginx-launch-template"
+      Name = format("%s-%s", var.name, "nginx-lt")
     },
   )
   }
 
-  # user_data = filebase64("${path.module}/nginx.sh")
+  user_data = filebase64("${path.module}/nginx.sh")
 }

@@ -1,14 +1,14 @@
-# terraform {
-#   backend "remote" {
-#     organization = "onyekaonu"
-
-#     workspaces {
-#       name = "terraform-cloud"
-#     }
-#   }
-# }
-
 terraform {
-  backend "local" {
+  backend "remote" {
+    organization = "onyeka-org"
+
+    workspaces {
+      name = "terraform-cloud"
+    }
   }
 }
+
+# terraform {
+#   backend "local" {
+#   }
+# }

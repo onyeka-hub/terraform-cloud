@@ -2,13 +2,13 @@
 
 # Create the certificate using a wildcard for all the domains created in onyeka.ga
 resource "aws_acm_certificate" "onyeka" {
-  domain_name       = "*.onyeka.ga"
+  domain_name       = "*.onyekaonu.site"
   validation_method = "DNS"
 }
 
 # calling the hosted zone
 data "aws_route53_zone" "onyeka" {
-  name         = "onyeka.ga"
+  name         = "onyekaonu.site"
   private_zone = false
 }
 
@@ -39,7 +39,7 @@ resource "aws_acm_certificate_validation" "onyeka" {
 # create records for tooling
 resource "aws_route53_record" "tooling" {
   zone_id = data.aws_route53_zone.onyeka.zone_id
-  name    = "tooling.onyeka.ga"
+  name    = "tooling.onyekaonu.site"
   type    = "A"
 
   alias {
@@ -52,7 +52,7 @@ resource "aws_route53_record" "tooling" {
 # create records for wordpress
 resource "aws_route53_record" "wordpress" {
   zone_id = data.aws_route53_zone.onyeka.zone_id
-  name    = "wordpress.onyeka.ga"
+  name    = "wordpress.onyekaonu.site"
   type    = "A"
 
   alias {

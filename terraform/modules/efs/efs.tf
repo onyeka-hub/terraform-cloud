@@ -9,18 +9,25 @@ resource "aws_kms_key" "onyi-kms" {
     {
       "Sid": "Enable IAM User Permissions",
       "Effect": "Allow",
-      "Principal": { "AWS": "arn:aws:iam::${var.account_no}:user/charles" },
+      "Principal": { "AWS": "arn:aws:iam::${var.account_no}:user/${var.user}" },
       "Action": "kms:*",
       "Resource": "*"
     }
   ]
 }
 EOF
+
+tags = merge(
+    var.tags,
+    {
+      Name = format("%s-%s", var.name, "kms")
+    },
+  )
 }
 
 # create key alias
 resource "aws_kms_alias" "alias" {
-  name          = "alias/kms"
+  name          = "alias/${var.name}"
   target_key_id = aws_kms_key.onyi-kms.key_id
 }
 
@@ -32,7 +39,7 @@ resource "aws_efs_file_system" "onyi-efs" {
  tags = merge(
     var.tags,
     {
-      Name = "onyi-efs"
+      Name = format("%s-%s", var.name, "efs")
     },
   )
 }
@@ -71,6 +78,10 @@ resource "aws_efs_access_point" "wordpress" {
       permissions = 0755
     }
   }
+
+  tags = {
+    Name = format("%s-%s", var.name, "wordpress")
+  }
 }
 
 # create access point for tooling
@@ -90,5 +101,9 @@ resource "aws_efs_access_point" "tooling" {
       owner_uid   = 0
       permissions = 0755
     }
+  }
+
+  tags = {
+    Name = format("%s-%s", var.name, "tooling")
   }
 }

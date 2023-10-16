@@ -1,11 +1,11 @@
 resource "aws_eip" "nat_eip" {
-  vpc        = true
+  domain       = "vpc"
   depends_on = [aws_internet_gateway.ig]
 
   tags = merge(
     var.tags,
     {
-      Name = format("%s-EIP-%s", var.name, var.environment)
+      Name = format("%s-%s", var.name, "eip")
     },
   )
 }
@@ -19,7 +19,7 @@ resource "aws_nat_gateway" "nat" {
   tags = merge(
     var.tags,
     {
-      Name = format("%s-Nat-%s", var.name, var.environment)
+      Name = format("%s-%s", var.name, "nat-gw")
     },
   )
 }

@@ -10,14 +10,6 @@ variable "enable_dns_hostnames" {
   default = "true"
 }
 
-variable "enable_classiclink" {
-  default = "false"
-}
-
-variable "enable_classiclink_dns_support" {
-  default = "false"
-}
-
 variable "preferred_number_of_public_subnets" {
   default     = null
   type        = number
@@ -37,7 +29,7 @@ variable "tags" {
 }
 
 variable "max_subnets" {
-  
+  type = number
 }
 
 variable "name" {

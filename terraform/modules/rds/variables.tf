@@ -28,3 +28,10 @@ variable "multi_az" {
   type = bool
 }
 
+variable "identifier" {
+  type = string
+}
+
+variable "db_name" {
+  type = string
+}

@@ -1,9 +1,12 @@
+#########################################
+# vpc variables 
+#########################################
 variable "region" {
   default = "us-east-2"
 }
 
 variable "vpc_cidr" {
-  default = "172.16.0.0/16"
+  default = "10.0.0.0/16"
 }
 
 variable "enable_dns_support" {
@@ -14,13 +17,7 @@ variable "enable_dns_hostnames" {
   default = "true"
 }
 
-variable "enable_classiclink" {
-  default = "false"
-}
-
-variable "enable_classiclink_dns_support" {
-  default = "false"
-}
+variable "max_subnets" {}
 
 variable "preferred_number_of_public_subnets" {
   type        = number
@@ -34,7 +31,7 @@ variable "preferred_number_of_private_subnets" {
 
 variable "name" {
   type    = string
-  default = "ACS"
+  default = "onyeka"
 }
 
 variable "tags" {
@@ -48,19 +45,16 @@ variable "environment" {
   description = "Enviroment"
 }
 
-variable "ami" {
-  type        = string
-  description = "AMI ID for the launch template"
+#########################################
+# rds variables 
+#########################################
+
+variable "identifier" {
+  type = string
 }
 
-variable "keypair" {
-  type        = string
-  description = "key pair for the instances"
-}
-
-variable "account_no" {
-  type        = number
-  description = "the account number"
+variable "db_name" {
+  type = string
 }
 
 variable "master-username" {
@@ -73,15 +67,35 @@ variable "master-password" {
   description = "RDS master password"
 }
 
+variable "multi_az" {}
+
+#########################################
+# rds variables 
+#########################################
+
+variable "account_no" {
+  type        = number
+  description = "the account number"
+}
+
+variable "user" {
+  type = string
+}
+
+#########################################
+# Auto scaling group variables 
+#########################################
+
+variable "keypair" {
+  type        = string
+  description = "key pair for the instances"
+}
+
 variable "ami-web" {}
 
 variable "ami-bastion" {}
 
 variable "ami-nginx" {}
-
-# variable ""max_subnets"" {}
-
-variable "multi_az" {}
 
 variable "max_size" {}
 
@@ -89,4 +103,11 @@ variable "min_size" {}
 
 variable "desired_capacity" {}
 
-variable "max_subnets" {}
+#########################################
+# compute variables 
+#########################################
+
+# variable "ami" {
+#   type        = string
+#   description = "AMI ID for compute resources"
+# }

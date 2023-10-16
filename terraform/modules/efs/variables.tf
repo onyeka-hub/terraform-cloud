@@ -8,14 +8,22 @@ variable "account_no" {
   type = number
 }
 
+variable "user" {
+  type = string
+}
+
+variable "name" {
+  type = string
+}
+
 variable "efs-subnet-1" {
-  
+  type = string
 }
 
 variable "efs-subnet-2" {
-  
+  type = string
 }
 
 variable "efs-sg" {
-  
+  type = list
 }

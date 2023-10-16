@@ -26,20 +26,16 @@ locals {
       description = "IALB security group"
     }
 
-
     # security group for webservers
     webserver-sg = {
       name        = "webserver-sg"
       description = "webservers security group"
     }
 
-
     # security group for data-layer
     datalayer-sg = {
       name        = "datalayer-sg"
       description = "data layer security group"
-
-
     }
   }
 }

@@ -1,9 +1,9 @@
 variable "subnets-compute" {
-    description = "public subnetes for compute instances"
+  description = "public subnetes for compute instances"
 }
 variable "ami-jenkins" {
-    type = string
-    description = "ami for jenkins"
+  type = string
+  description = "ami for jenkins"
 }
 variable "ami-jfrog" {
     type = string
@@ -25,4 +25,8 @@ variable "tags" {
   description = "A mapping of tags to assign to all resources."
   type        = map(string)
   default     = {}
+}
+
+variable "name" {
+  type = string
 }

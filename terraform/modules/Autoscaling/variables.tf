@@ -4,9 +4,9 @@ variable "tags" {
   default     = {}
 }
 
-# variable "ami" {
-#   type = string
-# }
+variable "name" {
+  type = string
+}
 
 variable "ami-web" {
   type        = string
@@ -22,11 +22,6 @@ variable "instance_profile" {
 variable "keypair" {
   type        = string
   description = "Keypair for instances"
-}
-
-variable "ami-bastion" {
-  type        = string
-  description = "ami for bastion"
 }
 
 variable "web-sg" {
@@ -54,6 +49,10 @@ variable "public_subnets" {
   description = "Second subnet for external ALB"
 }
 
+variable "ami-bastion" {
+  type        = string
+  description = "ami for bastion"
+}
 variable "ami-nginx" {
   type        = string
   description = "ami for nginx"
