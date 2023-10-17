@@ -14,7 +14,9 @@ The tooling code is stored in this [repository]((https://github.com/Livingstone9
 
 Always refer to the given diagram
 
-![project image](./tooling_project_15.png)
+![project image](./images/architecture.PNG)
+
+![project image](./images/architecture2.PNG)
 
 
 
@@ -25,7 +27,7 @@ sudo apt install graphviz
 - terraform graph -type=plan | dot -Tpng > graph.png
 - terraform graph  | dot -Tpng > graph.png
 
-## Read More abot terrafrom graph
+## Read More about terrafrom graph
 https://www.terraform.io/docs/cli/commands/graph.html
 
 

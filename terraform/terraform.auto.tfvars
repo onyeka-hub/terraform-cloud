@@ -51,11 +51,11 @@ account_no = 255913473442
 # Auto-scaling-group variables 
 #########################################
 
-ami-bastion = "ami-02b8534ff4b424939"
+ami-bastion = "ami-0e8b876c40f30057d"
 
-ami-nginx = "ami-02b8534ff4b424939"
+ami-nginx = "ami-0ee88617a32dd970c"
 
-ami-web = "ami-02b8534ff4b424939"
+ami-web = "ami-0aa353454634186a5"
 
 keypair = "onyi-ohio"
 
@@ -69,5 +69,5 @@ desired_capacity = 1
 # compute variables 
 #########################################
 
-# ami = "ami-02b8534ff4b424939"
+# ami = "ami-066115603a9bcec9d"
 
