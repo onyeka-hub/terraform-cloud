@@ -58,4 +58,4 @@ https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_i
 https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 
 
-test
+aws iam delete-instance-profile --instance-profile-name aws_instance_profile_test
