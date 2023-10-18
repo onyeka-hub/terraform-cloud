@@ -51,7 +51,7 @@ account_no = 255913473442
 # Auto-scaling-group variables 
 #########################################
 
-ami-bastion = "ami-0a3b5051428f82636"
+ami-bastion = "ami-063d79a98f1787e57"
 
 ami-nginx = "ami-0ee88617a32dd970c"
 
