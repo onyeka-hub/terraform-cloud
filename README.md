@@ -57,5 +57,43 @@ https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_k
 https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
 https://medium.com/risan/upgrade-your-ssh-key-to-ed25519-c6e8d60d3c54
 
+## Trouble shooting
 
 aws iam delete-instance-profile --instance-profile-name aws_instance_profile_test
+
+aws ec2 describe-instances
+
+ansible --version | grep "python version"
+
+ansible-inventory -i inventory/aws_ec2.yml --graph
+
+/usr/local/lib/python
+
+/usr/lib/python
+
+```
+pip3 list | grep boto
+ansible --version | grep "python version"
+whereis python
+which python
+which python3
+which python3.6
+which python3.11
+whereis ansible
+whereis pip
+pip3 install ansible
+whereis ansible
+which ansible
+ls /usr/bin/ | grep python
+ls /usr/local/lib/
+ls /usr/local/lib/python3.6/site-packages/
+ansible --version | grep "python version"
+git clone https://github.com/onyeka-hub/terraform-cloud.git
+ansible-inventory -i inventory/aws_ec2.yml --graph
+whereis mysql
+whereis git
+whereis tmux
+which tmux
+history
+```
+
