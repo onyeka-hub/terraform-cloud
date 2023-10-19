@@ -3,12 +3,13 @@
   pip:
     name: pymysql
     state: present
-    
+
+# where the master-username and master-password is the username and password of the rds instance
 - name: create database
   community.mysql.mysql_db:
     login_host: "terraform-2021111611530321750000000c.cdqpbjkethv0.us-east-1.rds.amazonaws.com" 
-    login_user: "david"
-    login_password: "devopspblproject"
+    login_user: "master-username"
+    login_password: "master-password"
     name: wordpressdb
     collation: utf8_general_ci
     encoding: utf8
@@ -22,7 +23,7 @@
     replace: "{{ item.line }}"
   loop:
     - { regexp: '^localhost', line: "terraform-2021111611530321750000000c.cdqpbjkethv0.us-east-1.rds.amazonaws.com" }
-    - { regexp: '^username_here', line: "david" }
+    - { regexp: '^username_here', line: "master-username" }
     - { regexp: '^database_name_here', line: "wordpressdb" }
-    - { regexp: '^password_here', line: "devopspblproject" }
+    - { regexp: '^password_here', line: "master-password" }
 
