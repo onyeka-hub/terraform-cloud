@@ -26,7 +26,9 @@ sudo python3 -m pip install psycopg2==2.7.5 --ignore-installed
 sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo unzip awscliv2.zip
 sudo ./aws/install
-sudo pip3 install ansible -y
+# sudo pip3 install ansible -y
+sudo python3 get-pip.py
+sudo python3 -m pip install ansible
 sudo yum install -y policycoreutils-python-utils
 ansible-galaxy collection install amazon.aws
 ansible-galaxy collection install community.general
